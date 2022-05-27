@@ -1,7 +1,13 @@
-import { configureStore } from "@reduxjs/toolkit";
-import pokemonReducer from "./features/pokemonSlice";
+import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
+import { setupListeners } from "@reduxjs/toolkit/query";
+import { pokemonApi } from "./services/pokemon";
+
 export const store = configureStore({
   reducer: {
-    dog: pokemonReducer,
+    [pokemonApi.reducerPath]: pokemonApi.reducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(pokemonApi.middleware),
 });
+
+setupListeners(store.dispatch);
