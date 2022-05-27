@@ -1,4 +1,3 @@
-import { StyleSheet } from "react-native";
 import { store } from "./src/app/store";
 import { Provider } from "react-redux";
 import AppWrapper from "./AppWrapper";
